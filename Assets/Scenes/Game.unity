@@ -199,6 +199,7 @@ MonoBehaviour:
   maxSpeed: 5
   scoreMultiplier: 10
   uiDoc: {fileID: 1967522256}
+  explosionEffect: {fileID: 353119437413571211, guid: 75e14d14414b9fc48ae9b561a61a0d59, type: 3}
 --- !u!4 &363543094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9170429195807258509, guid: 27edb5c6a4a94d64db74503419cf34b5, type: 3}

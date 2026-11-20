@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -8,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 5f;
     public float scoreMultiplier = 10f;
     public UIDocument uiDoc;
+    public GameObject explosionEffect;
     GameObject boosterFlame = null;
     Rigidbody2D rb;
     float elasedTime = 0f;
     float score = 0f;
     Label scoreText;
+    Button restartButton;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,6 +25,9 @@ public class PlayerController : MonoBehaviour
             boosterFlame.SetActive(false);
         }
         scoreText = uiDoc.rootVisualElement.Q<Label>("ScoreLabel");
+        restartButton = uiDoc.rootVisualElement.Q<Button>("RestartButton");
+        restartButton.style.display = DisplayStyle.None;
+        restartButton.clicked += ReloadScene;
     }
 
     void Update()
@@ -75,5 +81,14 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        Instantiate(explosionEffect, 
+                    transform.position,
+                    transform.rotation);
+        restartButton.style.display = DisplayStyle.Flex;
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(0);//(SceneManager.GetActiveScene().name);
     }
 }
