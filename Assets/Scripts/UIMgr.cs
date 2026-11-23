@@ -87,5 +87,12 @@ public class UIMgr : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    // "SpriteFlight/Restart" 이 메뉴명이 같아야 함
+    [MenuItem("SpriteFlight/Restart", true)]
+    static bool RestartValidate()
+    {
+        return Application.isPlaying;
+    }
 #endif
 }
