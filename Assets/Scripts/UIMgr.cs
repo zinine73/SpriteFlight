@@ -12,6 +12,7 @@ public class UIMgr : MonoBehaviour
     Label scoreText;
     Label highScoreText;
     Button restartButton;
+    Button quitButton;
     float elasedTime = 0f;
     float score = 0f;
     float highScore = 0f;
@@ -29,6 +30,8 @@ public class UIMgr : MonoBehaviour
         restartButton = ve.Q<Button>("RestartButton");
         restartButton.style.display = DisplayStyle.None;
         restartButton.clicked += ReloadScene;
+        quitButton = ve.Q<Button>("QuitButton");
+        quitButton.clicked += QuitGame;
     }
 
     void Update()
@@ -75,6 +78,11 @@ public class UIMgr : MonoBehaviour
         SceneManager.LoadScene(0);//(SceneManager.GetActiveScene().name);
     }
 
+    void QuitGame()
+    {
+        Application.Quit();
+    }
+
 #if UNITY_EDITOR
     [MenuItem("SpriteFlight/Delete HighScore")]
     static void DeleteHighScore()
@@ -88,7 +96,7 @@ public class UIMgr : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    // "SpriteFlight/Restart" 이 메뉴명이 같아야 함
+    //"SpriteFlight/Restart" 이 메뉴명이 같아야 함
     [MenuItem("SpriteFlight/Restart", true)]
     static bool RestartValidate()
     {
